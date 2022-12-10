@@ -4,7 +4,7 @@
       <div class="col-md-2">
         <section class="row">
           <div class="col-12 bg-light">
-
+            <Login />
           </div>
         </section>
       </div>
@@ -34,6 +34,7 @@
 
 <script>
 import { computed, onMounted } from 'vue'
+import Login from './components/Login.vue'
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue';
 import ProductCard from './components/ProductCard.vue';
@@ -54,9 +55,10 @@ export default {
     })
     return {
       products: computed(() => AppState.products),
-      appState: computed(() => AppState)
+      appState: computed(() => AppState),
     }
   },
+  components: { Login },
   components: { Navbar },
   components: { ProductCard },
 }

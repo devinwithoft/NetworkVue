@@ -1,22 +1,16 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
-    <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3 row justify-content-start">
+    <router-link class="navbar-brand col-6 " :to="{ name: 'Home' }">
       <H1>NETWORK.vue</H1>
     </router-link>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto">
-        <li>
-          <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
-            About
-          </router-link>
-        </li>
-      </ul>
-      <!-- LOGIN COMPONENT HERE -->
-      <Login />
+
+    <div class="col-3 text-start">
+
+
+      <form>
+        <input>
+        <button class=" mdi mdi-magnify"></button>
+      </form>
     </div>
   </nav>
 </template>

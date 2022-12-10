@@ -5,6 +5,7 @@
       Login
     </button>
     <div v-else>
+      <h1><img :src="account.picture" alt=""></h1>
       <div class="dropdown dropstart my-2 my-lg-0">
         <div type="button" class="bg-dark border-0 selectable no-select" data-bs-toggle="dropdown"
           aria-expanded="false">
@@ -51,4 +52,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 </style>

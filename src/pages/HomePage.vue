@@ -9,10 +9,10 @@
       <PostCard :post="p" />
     </div>
   </section>
-  <section class="row">
+  <section class="row text-center">
     <div class="col-6">
       <div class="btn btn-success" v-if="(currentPage > 1)" @click="changePage(currentPage - 1)">Previous</div>
-      <div class="btn btn-danger" v-else disabled>Previous</div>
+      <div class="btn btn-danger disabled" v-else>Previous</div>
     </div>
     <div class="col-6">
       <div class="btn btn-success" @click="changePage(currentPage + 1)">Next</div>
@@ -43,6 +43,7 @@ export default {
     return {
       posts: computed(() => AppState.posts),
       currentPage: computed(() => AppState.page),
+      maxPage: computed(() => AppState.maxPage),
       async changePage(number) {
         try {
           console.log(number)

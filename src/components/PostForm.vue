@@ -1,5 +1,4 @@
 <template>
-
   <form @submit.prevent="createPost()" class="row justify-content-end card">
     <img>
     <div class="mb-3 col-3">

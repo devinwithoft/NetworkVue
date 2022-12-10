@@ -29,7 +29,7 @@ class PostsService {
 
   async getPostsByProfileId(profileId) {
     const res = await api.get(`/api/posts?creatorId=${profileId}`)
-    AppState.posts = res.data.posts
+    AppState.posts = res.data.posts.map(p => new Post(p))
     console.log(res.data)
   }
 
@@ -38,6 +38,11 @@ class PostsService {
     const res = await api.post(`/api/posts/${id}/like`)
     console.log("[LIKING POST]", res.data)
   }
-}
 
+  async deletePost(id) {
+    const res = await api.delete(`api/posts/${id}`)
+    const index = AppState.posts.findIndex(p => p.id == id)
+    AppState.posts.splice(index, 1)
+  }
+}
 export const postsService = new PostsService()

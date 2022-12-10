@@ -14,6 +14,16 @@
       <PostCard :post="p" />
     </div>
   </section>
+  <section class="row text-center">
+    <div class="col-6">
+      <div class="btn btn-success" v-if="(currentPage > 1)" @click="changePage(currentPage - 1)">Previous</div>
+      <div class="btn btn-danger disabled" v-else>Previous</div>
+    </div>
+    <div class="col-6">
+      <div class="btn btn-success" v-if="(currentPage < maxPage)" @click="changePage(currentPage + 1)">Next</div>
+      <div class="btn btn-danger disabled" v-else disabled>Next</div>
+    </div>
+  </section>
 </template>
 
 

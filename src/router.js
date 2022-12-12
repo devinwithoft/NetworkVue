@@ -12,21 +12,21 @@ const routes = [
     component: loadPage('HomePage')
   },
   {
-    path: '/about',
-    name: 'About',
-    component: loadPage('AboutPage')
-  },
-  {
     path: '/profile/:profileId',
     name: 'Profile',
     component: loadPage('ProfilePage'),
+  },
+  {
+    path: '/search/:searchQuery',
+    name: 'Search',
+    component: loadPage('SearchPage')
   },
   {
     path: '/account',
     name: 'Account',
     component: loadPage('AccountPage'),
     beforeEnter: authGuard
-  }
+  },
 ]
 
 export const router = createRouter({

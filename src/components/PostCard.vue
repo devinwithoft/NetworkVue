@@ -14,12 +14,12 @@
     <div v-if="myPost" class="col-2 mt-3 text-center">
       <div class="dropdown">
         <button class="btn btn-secondary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-          aria-expanded="false">
+          aria-expanded="false" @click="setEditPost(post.id)">
           <h5 class="mdi mdi-dots-horizontal"></h5>
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
           <li><a class="dropdown-item" href="#" @click="deletePost(post.id)">Delete Post</a></li>
-          <li><a class="dropdown-item" href="#" @click="editPostOn(post.id)">Edit Post</a></li>
+          <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#">Edit Post</a></li>
         </ul>
       </div>
     </div>
@@ -29,13 +29,18 @@
     <div v-if="post.imgUrl != ''" class="col-md-12 col-10 text-center no-margin">
       <img :src="post.imgUrl" alt="" class="img-fluid post-img rounded">
     </div>
-    <div class="col-3 mt-4 s-2 text-center">Likes: {{ post.likeIds.length }}</div>
+    <div class="col-3 mt-4 s-2 text-center"></div>
     <div class="col-8 text-end pt-2">
-      <p v-if:="isLiked" class=" mdi mdi-heart like-icon text-danger" @click="likePost(post.id)"></p>
-      <p v-else: class="mdi mdi-heart-outline like-icon text-danger" @click="likePost(post.id)"></p>
+      <p v-if:="isLiked" class=" mdi mdi-heart like-icon text-danger" @click="likePost(post.id)"> <span
+          class="text-dark"> {{
+              post.likeIds.length
+          }}</span> </p>
+      <p v-else: class="mdi mdi-heart-outline like-icon text-danger" @click="likePost(post.id)"><span class="text-dark">
+          {{
+    post.likeIds.length
+          }}</span> </p>
     </div>
   </section>
-  <section class="row"></section>
 </template>
 
 
@@ -61,22 +66,30 @@ export default {
           Pop.error(error)
         }
       },
-      async deletePost(id) {
+      async deletePost(PostId) {
         if (await Pop.confirm("Delete your post?")) {
-          await postsService.deletePost(id)
-          console.log
+          await postsService.deletePost(PostId)
         }
+      },
+      setEditPost(PostId) {
+        try {
+          postsService.setEditPost(PostId)
+        } catch (error) {
+          Pop.error(error)
+        }
+        console.log
       },
     }
   }
-};
+}
+
 </script>
 
 
 <style lang="scss" scoped>
 .poster-img {
-  height: 6vh;
-  width: 6vh
+  height: 10vh;
+  width: 10vh
 }
 
 .post-img {

@@ -1,16 +1,16 @@
 <template>
   <section class="row justify-content-center">
-    <div class="col-10 mt-3">
+    <div class="col-9 mt-3">
       <ProfileDetails :profile="profile" />
     </div>
   </section>
-  <section class="row justify-content-center">
-    <div class="col-10 mt-3">
-      <PostForm :account="account" />
+  <section v-if="(account.id == profile.id)" class="row justify-content-center">
+    <div class="col-md-9 mt-3 card elevation-5 my-3 mt-5">
+      <PostForm />
     </div>
   </section>
   <section class="row justify-content-center">
-    <div v-for="p in posts" class="col-md-8 card my-2 elevation-5">
+    <div v-for="p in posts" class="col-md-9 card my-2 elevation-5">
       <PostCard :post="p" />
     </div>
   </section>
@@ -20,7 +20,7 @@
       <div class="btn btn-danger disabled" v-else>Previous</div>
     </div>
     <div class="col-6">
-      <div class="btn btn-success" v-if="(currentPage < maxPage)" @click="changePage(currentPage + 1)">Next</div>
+      <div class="btn btn-success" v-if="(currentPage !== maxPage)" @click="changePage(currentPage + 1)">Next</div>
       <div class="btn btn-danger disabled" v-else disabled>Next</div>
     </div>
   </section>
@@ -63,7 +63,9 @@ export default {
     return {
       profile: computed(() => AppState.activeProfile),
       posts: computed(() => AppState.posts),
-      account: computed(() => AppState.account)
+      account: computed(() => AppState.account),
+      maxPage: computed(() => AppState.maxPage),
+      currentPage: computed(() => AppState.currentPage)
     };
   },
   components: { ProfileDetails },

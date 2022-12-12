@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <section class="row">
       <div class="col-md-2">
-        <section class="row">
+        <section class="row sticky-top">
           <div class="col-12 bg-light">
             <Login />
           </div>
@@ -16,7 +16,6 @@
           </div>
           <div class="col-md-9">
             <router-view />
-            <h6></h6>
           </div>
           <div class="col-md-3">
             <section class="row">
@@ -30,6 +29,14 @@
     </section>
   </div>
 
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    v-if="activePost.id">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <PostEdit />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -40,6 +47,7 @@ import Navbar from './components/Navbar.vue';
 import ProductCard from './components/ProductCard.vue';
 import Pop from "./utils/Pop.js";
 import { productsService } from "./services/ProductsService.js";
+import PostEdit from "./components/PostEdit.vue";
 
 export default {
   setup() {
@@ -54,13 +62,15 @@ export default {
       getProducts()
     })
     return {
+      account: computed(() => AppState.account),
       products: computed(() => AppState.products),
       appState: computed(() => AppState),
+      activePost: computed(() => AppState.activePost)
     }
   },
   components: { Login },
   components: { Navbar },
-  components: { ProductCard },
+  components: { ProductCard, PostEdit },
 }
 </script>
 <style lang="scss">

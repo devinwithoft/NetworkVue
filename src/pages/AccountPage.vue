@@ -1,18 +1,19 @@
 <template>
-  <div class="about text-center">
-    <h1>Welcome {{ account.name }}</h1>
-    <img class="rounded" :src="account.picture" alt="" />
-    <p>{{ account.email }}</p>
-  </div>
+  <section class="row justify-content-center">
+    <div class="col-12 text-center">
+      <h1>Edit account information</h1>
+    </div>
+    <AccountComponent />
+  </section>
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, reactive, onMounted, ref } from 'vue'
 import { AppState } from '../AppState'
 export default {
   setup() {
     return {
-      account: computed(() => AppState.account)
+      myAccount: computed(() => AppState.account)
     }
   }
 }

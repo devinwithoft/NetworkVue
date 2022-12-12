@@ -5,6 +5,11 @@ export class Account {
     this.name = data.name
     this.picture = data.picture
     this.coverImg = data.coverImg
-    // TODO add additional properties if needed
+    this.github = data.github || ''
+    this.linkedin = data.linkedin || ''
+    this.resume = data.resume || ''
+    this.bio = data.bio || ''
+    this.class = data.class || ''
+    this.graduated = data.graduated || false
   }
 }
